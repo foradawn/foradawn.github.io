@@ -435,8 +435,14 @@
       
     </div>
     <!--player-->
-    <div style="width:240px;right:auto;background-color:white;">
+    <!--player1
+    <div style="width:240px;right:auto;background-color:white;padding-bottom:10px;">
      <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=494858477&auto=0&height=66"></iframe>
+     <input type="text" placeholder="search music" style="width=220px;height=25px;margin: -20px auto 0 auto;display: block;border-radius: 2px;text-align: center;border-width: inherit;margin-top: -20px;box-shadow: 0 0 10px #ccc;">-->
+     <!--player2-->
+     <script src="https://cdn.bootcss.com/aplayer/1.6.0/APlayer.min.js"></script>
+     <script src="https://api.i-meto.com/music/player.js"></script>
+     <div class="aplayer" data-id="494858477" data-server="netease" data-type="song" data-autoplay="false" data-mode="circulation" style="margin:0;background-color:white;margin-top:10px;"></div>
     </div>
   </aside>
 
