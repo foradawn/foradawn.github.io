@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[为Hexo添加音乐]]></title>
+    <url>%2F2017%2F12%2F31%2F%E4%B8%BAHexo%E6%B7%BB%E5%8A%A0%E9%9F%B3%E4%B9%90%2F</url>
+    <content type="text"><![CDATA[本来打算自己写个插件，无奈有点费时间，主要是后天要考试试啦，头有点大。于是使用了音乐外链播放器。一开始直接用的网易云单首歌曲的播放器,但是只能播放同一首歌曲，而且切换歌曲很麻烦，想着加个音乐搜索功能，然后发现有个更好的方式——使用歌单外链。但是打开网易云歌单会发现找不到歌单的外链，不过仔细看源码会发现有个歌单id，这样就够了 转自https://www.tiexo.cn/aplayer/ ，有删减 ###使用一个开源项目 ##Aplayer12&lt;script src=&quot;https://cdn.bootcss.com/aplayer/1.6.0/APlayer.min.js&quot;&gt;&lt;/script&gt;&lt;script src=&quot;https://api.i-meto.com/music/player.js&quot;&gt;&lt;/script&gt; 引入上述文件后在需要的位置添加播放器： 1&lt;div class=&quot;aplayer&quot; data-id=&quot;373559&quot; data-server=&quot;xiami&quot; data-type=&quot;song&quot;&gt;&lt;/div&gt; 参数如下：（粗体为必填项） data-id: 歌曲/专辑/歌单 ID data-server: 音乐平台，支持如下参数 netease （网易云音乐） tencent （qq音乐） xiami （虾米音乐） kugou （酷狗音乐） baidu （百度音乐） data-type: 请求类型，支持如下参数 song （单曲） album （专辑） playlist （歌单） search （搜索） data-mode: 播放模式 random （随机） single （单曲） circulation （列表循环） order （列表） data-autoplay: 自动播放 true false]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[能不能别装逼？]]></title>
     <url>%2F2017%2F12%2F30%2F%E8%83%BD%E4%B8%8D%E8%83%BD%E5%88%AB%E8%A3%85%E9%80%BC%EF%BC%9F%2F</url>
     <content type="text"><![CDATA[####距离2018还有1天#### ###距离考试只有2天，生无可恋，看来头发要掉光###]]></content>
