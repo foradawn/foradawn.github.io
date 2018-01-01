@@ -301,6 +301,148 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://github.com/foradawn/blog/blog/2018/01/01/Hexo自定义首页/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="foradawn">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Foradawn's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/blog/2018/01/01/Hexo自定义首页/" itemprop="url">Hexo自定义首页</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-01T14:08:18+08:00">
+                2018-01-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2018/01/01/Hexo自定义首页/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/01/01/Hexo自定义首页/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>####<strong>Hexo默认的首页每次页面刷新时，播放器之类会被重置，所以想法是使用iframe内联框架，将整个页面嵌在里面，而自己另外定义一个主页，将播放器放在外面，这样就实现了在跳转时播放器能够继续播放的效果，实际上仔细看网易云官网也是这么干的，这样做还能够实现自定义的首页，个人觉得更灵活一些，而博客页面可以成为子网页。那么问题是如何更改首页路由？花了一早上查了不少资料浏览了不少博客，99.9%的做法没能符合预期，然后功夫不负有心人，终于找到一个和我想的完全一致的做法（ps:主要是使用了google（#-_-））。</strong></p>
+<hr>
+<p>原文链接<br><a href="http://www.jsdoi.com/blog/2016/02/24/blog-hexo-github/" target="_blank" rel="noopener">http://www.jsdoi.com/blog/2016/02/24/blog-hexo-github/</a></p>
+<p>##<strong>1.更改生成目录</strong><br>在_config.yml的第15、16、20行更改如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">url: http://foradawn.github.io/blog</span><br><span class="line">root: /blog/</span><br><span class="line">public_dir: public/blog</span><br></pre></td></tr></table></figure>
+<p>目的就是将博客文件生成到public的子目录blog下。</p>
+<p>##<strong>2.更改部署目录</strong><br>在 node_modules/hexo-deployer-git/lib/deployer.js 的第19、20行更改如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// var publicDir = this.public_dir;</span><br><span class="line">var publicDir = pathFn.join(baseDir, &apos;public&apos;);</span><br></pre></td></tr></table></figure>
+<p>设置根路径为public，因为public_dir此时为public/blog</p>
+<p>##<strong>3.修复翻页问题</strong><br>在 node_modules/hexo/lib/plugins/helper/url_for.js 的第8、9行更改如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// path = path || &apos;/&apos;; </span><br><span class="line">path = path || &apos;&apos;;</span><br></pre></td></tr></table></figure>
+<p>首先声明博客首页为<a href="http://foradawn.github.io/blog" target="_blank" rel="noopener">http://foradawn.github.io/blog</a> ，网站首页为<a href="http://foradawn.github.io" target="_blank" rel="noopener">http://foradawn.github.io</a> 。<br>博客首页是在子路径/blog/下，但处于非第一页的页面时分页条第一页的链接变成了网址首页，原因是生成博客第一页链接时传的path为null，hexo分页插件将其替换成/，但所有的/又处理成网站首页没有加上根路径/blog/，改成’’后会正确加上根路径，同时path为/的也能正常处理成网站首页。<br>四、总结<br>好了，现在自定义文件都在public文件夹里（比如将index.html放在public里直接访问网站即是访问该文件），自动生成的博客文件都在public/blog里，每次hexo g更新博客，hexo d部署public文件夹，基于github的自定义主页的HEXO博客基本告成啦！</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://github.com/foradawn/blog/blog/2017/12/31/为Hexo添加音乐/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -644,7 +786,7 @@
               
                 <a href="/blog/archives/">
               
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
